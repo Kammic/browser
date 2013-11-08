@@ -1,2 +1,2 @@
-var Application = angular.module('Application',  []);
+var Browser = angular.module('Browser',  []);
 
