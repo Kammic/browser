@@ -1,3 +1,3 @@
-Editor::Engine.routes.draw do
-  root to: 'editor#index', as: :repo_editor
+Browser::Engine.routes.draw do
+  root to: 'browser#index', as: :browser
 end
