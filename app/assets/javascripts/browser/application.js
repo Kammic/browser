@@ -1,2 +1,2 @@
-var Browser = angular.module('Browser',  []);
+var Browser = angular.module('Browser',  ['ngRoute']);
 
