@@ -1,6 +1,6 @@
-BooksController = ["$scope", "$rootScope", "$http", function($scope, $rootScope, $http) {
-  $http({method: 'GET', url: '/books'}).
-    success(function(data, status, headers, config) {
-      $scope.books = data;
-    })
+BooksController = ["$scope", "server", function($scope, server) {
+  server.getBooks().then(function(books){
+    $scope.books = books;
+  });
+
 }];

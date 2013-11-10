@@ -14,6 +14,12 @@ Browser.service('server', ['$q', '$http', function($q, $http){
     });
   };
 
+  server.getBuilds = function(){
+    return $http.get('/builds').then(function(response){
+      return response.data;
+    });
+  };
+
   server.getBook = function(bookId){
     return $http.get('/books/' + bookId).then(function(response){
       return response.data;

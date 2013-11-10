@@ -1,0 +1,30 @@
+%script(type="text/ng-template" id="/builds/index.html")
+  %table(class="table table-striped table-bordered bootstrap-datatable datatable dataTable")
+    %thead
+      %tr(role="row")
+        %th #
+        %th Status
+        %th Branch
+        %th Author
+        %th Revision
+        %th Started
+    %tbody
+      %tr(ng-repeat="build in builds" class="builds")
+        %td
+          %a(ng-href="#/builds/{{build.id}}") {{build.id}}
+        %td(ng-switch="build.status")
+          %span(ng-switch-when="completed" class="label label-success")
+            {{build.status}}
+          %span(ng-switch-when="created" class="label label-warning")
+            %i(class="icon-spinner icon-spin")
+            {{build.status}}
+          %span(ng-switch-when="building" class="label label-primary")
+            {{build.status}}
+          %span(ng-switch-when="failed" class="label label-danger")
+            {{build.status}}
+
+        %td {{build.branch}}
+        %td {{build.author}}
+        %td {{build.revision}}
+        %td {{build.started_at}}
+

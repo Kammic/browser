@@ -14,6 +14,24 @@ describe('service: Server', function() {
     this.$httpBackend.verifyNoOutstandingRequest();
   });
 
+  describe('getBuilds', function(){
+    it('returns the current users builds', function(){
+      this.$httpBackend
+          .when('GET', '/builds')
+          .respond([{},{},{}]);
+
+      var done = false;
+      this.server.getBuilds().then(function(response){
+        expect(response.length).toEqual(3);
+        done = true;
+      });
+
+      this.$httpBackend.flush();
+      waitsFor(250, function(){ return done});
+    });
+  });
+
+
   describe('getUser', function(){
     it('returns the current users information', function(){
       this.$httpBackend

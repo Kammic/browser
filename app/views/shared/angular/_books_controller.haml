@@ -6,7 +6,7 @@
         %th Description
         %th Actions
     %tbody
-      %tr(ng-repeat="book in books")
+      %tr(ng-repeat="book in books" class="books")
         %td 
           %a(ng-href="#/books/{{book.id}}") {{book.name}}
         %td {{book.description}}
