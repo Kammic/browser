@@ -16,7 +16,6 @@ src_files:
   - app/assets/javascripts/lib/angular/angular.min.js
   - app/assets/javascripts/lib/angular/angular-route.min.js
   - app/assets/javascripts/lib/angular/angular-mocks.js
-  - app/assets/javascripts/application/browser/application.js
   - app/assets/javascripts/browser.js
   - app/assets/javascripts/browser/**/*.js
 

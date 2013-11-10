@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html data-ng-app='Browser'>
 <head>
-  <title>Writing.is</title>
+  <title>Arturo.io</title>
   <%= stylesheet_link_tag    "browser" %>
+  <%= javascript_include_tag "browser" %>
   <%= csrf_meta_tags %>
 </head>
 <body data-no-turbolink="true">
-
-<%= yield %>
+  <%= render 'shared/navigation_top' %>	
+		<div class="container">
+			<div id="content" class="col-lg-10 col-sm-11">
+        <%= yield %>
+			</div>
+	  </div>
 
 </body>
 </html>

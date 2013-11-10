@@ -1,6 +1,9 @@
 /*
 *= require_self
-*= require ./bootstrap/bootstrap
+*= require ./theme/bootstrap
+*= require ./theme/font-awesome
+*= require ./theme/style
+*= require ./theme/retina
 *= require_tree ./browser
 */
 
