@@ -2,6 +2,8 @@
 //= require jquery_ujs
 //= require_tree ./lib/bootstrap
 
+//= require ./lib/misc/moment.min
+//
 //= require ./lib/angular/angular.min
 //= require ./lib/angular/angular-route.min
 //= require ./lib/angular/angular-sanitize.min

@@ -4,9 +4,9 @@
       %tr(role="row")
         %th #
         %th Status
+        %th Revision
         %th Branch
         %th Author
-        %th Revision
         %th Started
     %tbody
       %tr(ng-repeat="build in builds" class="builds")
@@ -23,8 +23,8 @@
           %span(ng-switch-when="failed" class="label label-danger")
             {{build.status}}
 
+        %td {{build.revision}}
         %td {{build.branch}}
         %td {{build.author}}
-        %td {{build.revision}}
-        %td {{build.started_at}}
+        %td {{build.started_at | fromNow}}
 
