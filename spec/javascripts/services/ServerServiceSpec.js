@@ -14,6 +14,39 @@ describe('service: Server', function() {
     this.$httpBackend.verifyNoOutstandingRequest();
   });
 
+  describe('follow', function(){
+    it('returns true when follow is successful', function(){
+      this.$httpBackend
+          .when('GET', '/repos/1/follow')
+          .respond(200, '');
+
+      var done = false;
+      this.server.follow(1).then(function(response){
+        expect(response).toEqual(true);
+        done = true;
+      });
+
+      this.$httpBackend.flush();
+      waitsFor(250, function(){ return done});
+    });
+
+    it('returns false when follow is not successful', function(){
+      this.$httpBackend
+          .when('GET', '/repos/2/follow')
+          .respond(403, '');
+
+      var done = false;
+      this.server.follow(2).then(function(response){
+        expect(response).toEqual(false);
+        done = true;
+      });
+
+      this.$httpBackend.flush();
+      waitsFor(250, function(){ return done});
+    });
+  });
+
+
   describe('getBuilds', function(){
     it('returns the current users builds', function(){
       this.$httpBackend
@@ -22,6 +55,23 @@ describe('service: Server', function() {
 
       var done = false;
       this.server.getBuilds().then(function(response){
+        expect(response.length).toEqual(3);
+        done = true;
+      });
+
+      this.$httpBackend.flush();
+      waitsFor(250, function(){ return done});
+    });
+  });
+
+  describe('getRepos', function(){
+    it('returns the current users repos', function(){
+      this.$httpBackend
+          .when('GET', '/repos')
+          .respond([{},{},{}]);
+
+      var done = false;
+      this.server.getRepos().then(function(response){
         expect(response.length).toEqual(3);
         done = true;
       });

@@ -1,0 +1,20 @@
+%script(type="text/ng-template" id="/repos/index.html")
+  %table(class="table table-striped table-bordered bootstrap-datatable datatable dataTable")
+    %thead
+      %tr(role="row")
+        %th Name
+        %th Description
+        %th Actions
+    %tbody
+      %tr(ng-repeat="repo in repos" class="repos")
+        %td 
+          %a(ng-href="#/repo/{{repo.id}}") {{repo.name}}
+        %td {{repo.short_description}}
+        %td
+          %a(ng-click="follow(repo.id)" ng-hide="repo.following")
+            %span(class="label label-info") Follow
+          %a(ng-click="unfollow(repo.id)" ng-show="repo.following")
+            %span(class="label label-warning") Unfollow
+
+%script(type="text/ng-template" id="/books/show.html")
+  {{book.title}}

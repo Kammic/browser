@@ -1,24 +1,17 @@
 Browser.service('server', ['$q', '$http', function($q, $http){
 
   var server = {};
-
-  server.getUser  = function(){
-    return $http.get('/user').then(function(response){
+  var queryData = function(location) {
+    return $http.get(location).then(function(response){
       return response.data;
     });
   };
 
-  server.getBooks = function(){
-    return $http.get('/books').then(function(response){
-      return response.data;
-    });
-  };
+  server.getUser   = function(){ return queryData('/user'); };
+  server.getBooks  = function(){ return queryData('/books'); };
+  server.getBuilds = function(){ return queryData('/builds'); };
+  server.getRepos  = function(){ return queryData('/repos'); };
 
-  server.getBuilds = function(){
-    return $http.get('/builds').then(function(response){
-      return response.data;
-    });
-  };
 
   server.getBook = function(bookId){
     return $http.get('/books/' + bookId).then(function(response){
@@ -26,6 +19,11 @@ Browser.service('server', ['$q', '$http', function($q, $http){
     });
   };
 
+  server.follow = function(id) {
+    return $http.get('/repos/' + id + '/follow').then(function(response){
+      return true;
+    }, function(){ return false; } );
+  }
 
   return server;
 
