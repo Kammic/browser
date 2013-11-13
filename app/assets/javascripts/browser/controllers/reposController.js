@@ -12,7 +12,6 @@ ReposController = ["$scope", "server", function($scope, server) {
     });
   };
 
-
   $scope.updateRepos = function() {
     server.getRepos().then(function(repos){
       $scope.repos = repos;

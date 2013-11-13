@@ -6,6 +6,7 @@ BooksController = ["$scope", "server", function($scope, server) {
     });
   };
 
+
   $scope.unfollow = function(bookId){
     server.unfollow(bookId).then(function(result) {
       $scope.updateBooks();
