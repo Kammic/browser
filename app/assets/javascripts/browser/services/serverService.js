@@ -12,12 +12,6 @@ Browser.service('server', ['$q', '$http', function($q, $http){
   server.getBuilds = function(){ return queryData('/builds'); };
   server.getRepos  = function(){ return queryData('/repos'); };
 
-  server.deleteBook = function(bookId){
-    return $http.delete('/books/' + bookId).then(function(response){
-      return true;
-    }, function(){ return false });
-  };
-
   server.getBook = function(bookId){
     return $http.get('/books/' + bookId).then(function(response){
       return response.data;
@@ -29,6 +23,12 @@ Browser.service('server', ['$q', '$http', function($q, $http){
       return true;
     }, function(){ return false; } );
   }
+
+  server.unfollow = function(bookId){
+    return $http.delete('/books/' + bookId).then(function(response){
+      return true;
+    }, function(){ return false });
+  };
 
   return server;
 

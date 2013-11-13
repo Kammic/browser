@@ -6,8 +6,8 @@ BooksController = ["$scope", "server", function($scope, server) {
     });
   };
 
-  $scope.deleteBook = function(bookId){
-    server.deleteBook(bookId).then(function(result) {
+  $scope.unfollow = function(bookId){
+    server.unfollow(bookId).then(function(result) {
       $scope.updateBooks();
     });
   };

@@ -14,14 +14,14 @@ describe('service: Server', function() {
     this.$httpBackend.verifyNoOutstandingRequest();
   });
 
-  describe('delete book', function(){
+  describe('unfollow book', function(){
     it('returns true when delete is successful', function(){
       this.$httpBackend
           .when('DELETE', '/books/1')
           .respond(200, '');
 
       var done = false;
-      this.server.deleteBook(1).then(function(response){
+      this.server.unfollow(1).then(function(response){
         expect(response).toEqual(true);
         done = true;
       });
@@ -36,7 +36,7 @@ describe('service: Server', function() {
           .respond(404, '');
 
       var done = false;
-      this.server.deleteBook(1).then(function(response){
+      this.server.unfollow(1).then(function(response){
         expect(response).toEqual(false);
         done = true;
       });
