@@ -14,6 +14,39 @@ describe('service: Server', function() {
     this.$httpBackend.verifyNoOutstandingRequest();
   });
 
+  describe('delete book', function(){
+    it('returns true when delete is successful', function(){
+      this.$httpBackend
+          .when('DELETE', '/books/1')
+          .respond(200, '');
+
+      var done = false;
+      this.server.deleteBook(1).then(function(response){
+        expect(response).toEqual(true);
+        done = true;
+      });
+
+      this.$httpBackend.flush();
+      waitsFor(250, function(){ return done});
+    });
+
+    it('returns true when delete is not successful', function(){
+      this.$httpBackend
+          .when('DELETE', '/books/1')
+          .respond(404, '');
+
+      var done = false;
+      this.server.deleteBook(1).then(function(response){
+        expect(response).toEqual(false);
+        done = true;
+      });
+
+      this.$httpBackend.flush();
+      waitsFor(250, function(){ return done});
+    });
+
+  });
+
   describe('follow', function(){
     it('returns true when follow is successful', function(){
       this.$httpBackend
