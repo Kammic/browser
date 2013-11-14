@@ -30,6 +30,13 @@ Browser.service('server', ['$q', '$http', function($q, $http){
     }, function(){ return false });
   };
 
+  server.build = function(bookId){
+    return $http.get('/books/' + bookId + '/build').then(function(response){
+      return true;
+    }, function(){ return false });
+  };
+
+
   return server;
 
 }]);

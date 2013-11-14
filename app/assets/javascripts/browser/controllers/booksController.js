@@ -13,6 +13,14 @@ BooksController = ["$scope", "server", function($scope, server) {
     });
   };
 
+  $scope.build = function(bookId){
+    server.build(bookId).then(function(result) {
+      $scope.updateBooks();
+    });
+  };
+
+
+
 
   $scope.updateBooks();
 }];

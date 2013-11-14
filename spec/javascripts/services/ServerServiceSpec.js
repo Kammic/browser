@@ -14,6 +14,40 @@ describe('service: Server', function() {
     this.$httpBackend.verifyNoOutstandingRequest();
   });
 
+  describe('build book', function(){
+    it('returns true when build is successful', function(){
+      this.$httpBackend
+          .when('GET', '/books/1/build')
+          .respond(200, '');
+
+      var done = false;
+      this.server.build(1).then(function(response){
+        expect(response).toEqual(true);
+        done = true;
+      });
+
+      this.$httpBackend.flush();
+      waitsFor(250, function(){ return done});
+    });
+
+    it('returns false when build is not successful', function(){
+      this.$httpBackend
+          .when('GET', '/books/1/build')
+          .respond(404, '');
+
+      var done = false;
+      this.server.build(1).then(function(response){
+        expect(response).toEqual(false);
+        done = true;
+      });
+
+      this.$httpBackend.flush();
+      waitsFor(250, function(){ return done});
+    });
+
+  });
+
+
   describe('unfollow book', function(){
     it('returns true when delete is successful', function(){
       this.$httpBackend
@@ -30,7 +64,7 @@ describe('service: Server', function() {
       waitsFor(250, function(){ return done});
     });
 
-    it('returns true when delete is not successful', function(){
+    it('returns false when delete is not successful', function(){
       this.$httpBackend
           .when('DELETE', '/books/1')
           .respond(404, '');
