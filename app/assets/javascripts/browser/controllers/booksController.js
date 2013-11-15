@@ -19,8 +19,5 @@ BooksController = ["$scope", "server", function($scope, server) {
     });
   };
 
-
-
-
   $scope.updateBooks();
 }];
