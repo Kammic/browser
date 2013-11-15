@@ -2,24 +2,28 @@ var Browser = angular.module('Browser',  ['ngRoute']);
 
 Browser.config(['$routeProvider',
                function($routeProvider) {
-                 $routeProvider.
-                   when('/books', {
+                 $routeProvider
+                 .when('/books', {
                    templateUrl: '/books/index.html',
                    controller: 'BooksController'
-                 }).
-                   when('/books/:bookId', {
+                 })
+                 .when('/books/:bookId', {
                    templateUrl: '/books/show.html',
                    controller: 'BookController'
-                 }).
-                   when('/repos', {
+                 })
+                 .when('/repos', {
                    templateUrl: '/repos/index.html',
                    controller: 'ReposController'
-                 }).
-                   when('/builds', {
+                 })
+                 .when('/builds', {
                    templateUrl: '/builds/index.html',
                    controller: 'BuildsController'
-                 }).
-                   otherwise({
+                 })
+                 .when('/build/:buildId', {
+                   templateUrl: '/builds/show.html',
+                   controller: 'BuildController'
+                 })
+                 .otherwise({
                    redirectTo: '/books'
                  });
                }]);

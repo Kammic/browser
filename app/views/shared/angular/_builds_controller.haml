@@ -11,7 +11,7 @@
     %tbody
       %tr(ng-repeat="build in builds" class="builds")
         %td
-          %a(ng-href="#/builds/{{build.id}}") {{build.id}}
+          %a(ng-href="#/build/{{build.id}}") {{build.id}}
         %td(ng-switch="build.status")
           %span(ng-switch-when="completed" class="label label-success")
             {{build.status}}
@@ -27,4 +27,42 @@
         %td {{build.branch}}
         %td {{build.author}}
         %td {{build.started_at | fromNow}}
+
+%script(type="text/ng-template" id="/builds/show.html")
+  .col-lg-3.col-sm-6.col-xs-6.col-xxs-12
+    .smallstat.box
+      %i.icon-book.blue
+      %span.title
+        Pages
+      %span.value
+        200
+
+  .col-lg-3.col-sm-6.col-xs-6.col-xxs-12
+    .smallstat.box
+      %i.icon-font.blue
+      %span.title
+        Words
+      %span.value
+        500
+
+  .col-lg-3.col-sm-6.col-xs-6.col-xxs-12
+    .smallstat.box
+      %i.icon-plus-sign.green
+      %span.title
+        Additions
+      %span.value
+        {{build.additions}}
+
+  .col-lg-3.col-sm-6.col-xs-6.col-xxs-12
+    .smallstat.box
+      %i.icon-minus-sign.red
+      %span.title
+        Deletions
+      %span.value
+        {{build.deletions}}
+
+  .col-lg-3.col-sm-6.col-xs-6.col-xxs-12
+    %ul
+      %li(ng-repeat="(asset, url) in build.assets")
+        %a(ng-href="{{url}}") {{asset}}
 

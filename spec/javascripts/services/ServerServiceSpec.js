@@ -198,5 +198,21 @@ describe('service: Server', function() {
     });
   });
 
+  describe('getBuild', function(){
+    it('gets the data on the build', function(){
+      this.$httpBackend.when('GET', '/builds/1').respond({id: 1});
+
+        var done = false;
+        this.server.getBuild('1').then(function(response){
+          expect(response.id).toEqual(1);
+          done = true;
+        });
+
+        this.$httpBackend.flush();
+        waitsFor(250, function(){ return done});
+    });
+  });
+
+
 });
 

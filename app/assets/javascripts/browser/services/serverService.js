@@ -18,6 +18,13 @@ Browser.service('server', ['$q', '$http', function($q, $http){
     });
   };
 
+  server.getBuild = function(buildId){
+    return $http.get('/builds/' + buildId).then(function(response){
+      return response.data;
+    });
+  };
+
+
   server.follow = function(id) {
     return $http.get('/repos/' + id + '/follow').then(function(response){
       return true;
