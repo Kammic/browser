@@ -3,7 +3,7 @@
 *= require ./theme/bootstrap
 *= require ./theme/font-awesome
 *= require ./theme/style
-*= require ./theme/retina
 *= require_tree ./browser
+*= depend_on ./theme/style
 */
 

@@ -16,6 +16,8 @@ src_files:
   - app/assets/javascripts/lib/angular/angular.min.js
   - app/assets/javascripts/lib/angular/angular-route.min.js
   - app/assets/javascripts/lib/angular/angular-mocks.js
+  - app/assets/javascripts/lib/angular/ui-bootstrap-0.6.0.js
+  - app/assets/javascripts/lib/angular/ui-bootstrap-tpls-0.6.0.js
   - app/assets/javascripts/browser.js
   - app/assets/javascripts/browser/**/*.js
 

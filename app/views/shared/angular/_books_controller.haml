@@ -15,7 +15,7 @@
             %span(class="label label-success") View
           %a(ng-href="{{book.editor_url}}")
             %span(class="label label-success") Edit
-          %a(ng-click="build(book.id)" ng-hide="book.active_builds")
+          %a(ng-click="build(book.id)")
             %span(class="label label-success") Build
           %a(ng-click="unfollow(book.id)")
             %span(class="label label-danger") Unfollow

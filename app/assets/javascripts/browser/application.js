@@ -1,4 +1,4 @@
-var Browser = angular.module('Browser',  ['ngRoute']);
+var Browser = angular.module('Browser',  ['ngRoute', 'ui.bootstrap']);
 
 Browser.config(['$routeProvider',
                function($routeProvider) {

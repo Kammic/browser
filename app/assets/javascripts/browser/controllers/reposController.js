@@ -1,4 +1,4 @@
-ReposController = ["$scope", "server", function($scope, server) {
+ReposController = ["$scope", "$rootScope", "server", function($scope, $rootScope, server) {
 
   $scope.follow = function(id) {
     server.follow(id).then(function(){
@@ -19,4 +19,5 @@ ReposController = ["$scope", "server", function($scope, server) {
   };
 
   $scope.updateRepos();
+
 }];

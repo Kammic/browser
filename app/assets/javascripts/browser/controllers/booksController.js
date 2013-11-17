@@ -1,4 +1,4 @@
-BooksController = ["$scope", "server", function($scope, server) {
+BooksController = ["$scope", "$rootScope", "server", function($scope, $rootScope, server) {
 
   $scope.updateBooks = function(){
     server.getBooks().then(function(books){
@@ -14,9 +14,33 @@ BooksController = ["$scope", "server", function($scope, server) {
   };
 
   $scope.build = function(bookId){
+    if($scope.bookHasActiveBuilds(bookId)) {
+      $rootScope.$broadcast('alert', 'danger', 'Build already in progres');
+      return;
+    }
     server.build(bookId).then(function(result) {
       $scope.updateBooks();
     });
+  };
+
+  $scope.bookHasActiveBuilds = function(bookId) {
+    if(!$scope.books || $scope.books.length <= 0) {
+      return false;
+    }
+
+    var book = null;
+    for(var i = 0; i < $scope.books.length; i++) {
+      if($scope.books[i].id == bookId){
+        book = $scope.books[i];
+        break;
+      }
+    }
+
+    if(book.active_builds && book.active_builds.length > 0)
+      return true;
+    else
+      return false;
+
   };
 
   $scope.updateBooks();
