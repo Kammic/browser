@@ -37,28 +37,39 @@ describe('controller: BooksController', function() {
     expect(this.server.build).toHaveBeenCalledWith(1);
   });
 
-  it('$scope.books doesn\'t build when there are active builds', function(){
-     this.scope.books = [
-      {id: 21},
-      {id: 1, active_builds: [{id: 54}]},
-      {id: 2, active_builds: []}
-    ]
-    spy_and_return(this.server, 'build', true);
-    this.scope.build(1);
-    expect(this.server.build).not.toHaveBeenCalled();
-  });
+  describe('active builds', function(){
 
-  it('$scope.bookHasActiveBuilds returns books build status', function(){
-    this.scope.books = [
-      {id: 21},
-      {id: 1, active_builds: [{id: 54}]},
-      {id: 2, active_builds: []}
-    ]
-    expect(this.scope.bookHasActiveBuilds(21)).toEqual(false);
-    expect(this.scope.bookHasActiveBuilds(2)).toEqual(false);
-    expect(this.scope.bookHasActiveBuilds(1)).toEqual(true);
-  });
+    beforeEach(function() {
+      this.scope.books = [
+        {id: 21},
+        {id: 1, active_builds: [{id: 54}]},
+        {id: 2, active_builds: []}
+      ];
+    });
 
+    it('$scope.builds doesn\'t build when there are active builds', function(){
+      spy_and_return(this.server, 'build', true);
+      this.scope.build(1);
+      expect(this.server.build).not.toHaveBeenCalled();
+    });
+
+    it('$scope.builds alerts the user that there are active builds', function(){
+      var alerted = false;
+      this.scope.$on('alert', function(event, type, message) {
+        alerted = true;
+      });
+
+      this.scope.build(1);
+      waitsFor(function(){ return alerted; }, 250);
+    });
+
+    it('$scope.bookHasActiveBuilds returns books build status', function(){
+      expect(this.scope.bookHasActiveBuilds(21)).toEqual(false);
+      expect(this.scope.bookHasActiveBuilds(2)).toEqual(false);
+      expect(this.scope.bookHasActiveBuilds(1)).toEqual(true);
+    });
+
+  });
 
 });
 
