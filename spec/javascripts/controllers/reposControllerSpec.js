@@ -13,6 +13,12 @@ describe('controller: ReposController', function() {
     });
   }));
 
+  it('$scope.refreshReposFromGithub calls server.refreshRepos', function(){
+    spy_and_return(this.server, 'refreshReposFromGithub', true);
+    this.scope.refreshReposFromGithub();
+    expect(this.server.refreshReposFromGithub).toHaveBeenCalled();
+  });
+
   it('$scope.follow calls server.follow with correct id', function(){
     spy_and_return(this.server, 'follow', true);
     this.scope.follow(99);
@@ -32,13 +38,23 @@ describe('controller: ReposController', function() {
   });
 
   it('$scope.updateRepos sets $scope.repos', function(){
-    spy_and_return(this.server, 'getRepos', ['stuff']);
+    var response = {
+      repos: ['stuff']
+    };
+    spy_and_return(this.server, 'getRepos', response);
     this.scope.updateRepos();
     expect(this.scope.repos).toEqual(['stuff']);
-
   });
 
-
+  it('$scope.updateRepos sets $scope.loading', function(){
+    var response = {
+      loading: false,
+      repos: ['stuff']
+    };
+    spy_and_return(this.server, 'getRepos', response);
+    this.scope.updateRepos();
+    expect(this.scope.loading).toEqual(false);
+  });
 
 });
 

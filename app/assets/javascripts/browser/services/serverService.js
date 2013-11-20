@@ -43,6 +43,11 @@ Browser.service('server', ['$q', '$http', function($q, $http){
     }, function(){ return false });
   };
 
+  server.refreshReposFromGithub = function(){
+    return $http.get('/repos/refresh').then(function(response){
+      return true;
+    }, function(){ return false });
+  };
 
   return server;
 

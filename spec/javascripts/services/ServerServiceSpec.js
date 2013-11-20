@@ -213,6 +213,20 @@ describe('service: Server', function() {
     });
   });
 
+  describe('refreshReposFromGithub', function(){
+    it('calls refrsh on repos', function(){
+      this.$httpBackend.when('GET', '/repos/refresh').respond({});
+
+        var done = false;
+        this.server.refreshReposFromGithub().then(function(response){
+          done = true;
+        });
+
+        this.$httpBackend.flush();
+        waitsFor(250, function(){ return done});
+    });
+  });
+
 
 });
 

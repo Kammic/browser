@@ -1,5 +1,9 @@
 ReposController = ["$scope", "$rootScope", "server", function($scope, $rootScope, server) {
 
+  $scope.refreshReposFromGithub = function(){
+    server.refreshReposFromGithub();
+  };
+
   $scope.follow = function(id) {
     server.follow(id).then(function(){
       $scope.updateRepos();
@@ -13,11 +17,20 @@ ReposController = ["$scope", "$rootScope", "server", function($scope, $rootScope
   };
 
   $scope.updateRepos = function() {
-    server.getRepos().then(function(repos){
-      $scope.repos = repos;
+    server.getRepos().then(function(response){
+      $scope.loading = response.loading;
+      $scope.repos   = response.repos;
     });
   };
 
   $scope.updateRepos();
+
+  $scope.interval = setInterval(function(){
+    $scope.updateRepos();
+  }, 3000);
+
+  $scope.$on('$destroy', function(){
+    clearInterval($scope.interval);
+  });
 
 }];

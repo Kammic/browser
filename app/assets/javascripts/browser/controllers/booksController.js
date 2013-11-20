@@ -1,4 +1,4 @@
-BooksController = ["$scope", "$rootScope", "server", function($scope, $rootScope, server) {
+BooksController = ["$scope", "$rootScope", "$location", "server", function($scope, $rootScope, $location, server) {
 
   $scope.updateBooks = function(){
     server.getBooks().then(function(books){
@@ -19,7 +19,7 @@ BooksController = ["$scope", "$rootScope", "server", function($scope, $rootScope
       return;
     }
     server.build(bookId).then(function(result) {
-      $scope.updateBooks();
+      $location.path('/builds');
     });
   };
 
