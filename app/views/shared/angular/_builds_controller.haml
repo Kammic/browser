@@ -24,7 +24,9 @@
           %span(ng-switch-when="failed" class="label label-danger")
             {{build.status}}
 
-        %td {{build.revision}}
+        %td 
+          %a(ng-href="{{build.github_commit_url}}" target="_blank")
+            {{build.revision}}
         %td {{build.branch}}
         %td {{build.author}}
         %td {{build.started_at | fromNow}}
@@ -53,7 +55,8 @@
         %span.title
           Additions
         %span.value
-          {{build.additions}}
+          %a(ng-href="{{build.github_commit_url}}" target="_blank")
+            {{build.additions}}
 
     .col-lg-3.col-sm-6.col-xs-6.col-xxs-12
       .smallstat.box
@@ -61,7 +64,8 @@
         %span.title
           Deletions
         %span.value
-          {{build.deletions}}
+          %a(ng-href="{{build.github_commit_url}}" target="_blank")
+            {{build.deletions}}
 
   .row
     .col-lg-6.col-sm-6.col-xs-12.col-xxs-12
@@ -97,7 +101,7 @@
 
     .col-lg-6.col-sm-6.col-xs-12.col-xxs-12
       .smallstat.box
-        %h1 Books
+        %h1 Assets
         %ul
           %li(ng-repeat="(asset, url) in build.assets")
             %a(ng-href="{{url}}") {{asset}}
