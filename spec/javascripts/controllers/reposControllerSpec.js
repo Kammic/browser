@@ -13,6 +13,35 @@ describe('controller: ReposController', function() {
     });
   }));
 
+  describe('$scope.getRepos', function(){
+    beforeEach(function(){
+      spyOn(this.scope, 'updateRepos');
+    });
+
+    it('updates $scope.page', function(){
+      this.scope.page = 9;
+      this.scope.getRepos(1);
+      expect(this.scope.page).toEqual(1);
+    });
+
+    it('calls updateRepos', function(){
+      this.scope.getRepos(1);
+      expect(this.scope.updateRepos).toHaveBeenCalled();
+    });
+
+    it('doesnt go beyond the bounds', function(){
+      this.scope.total_pages = 10;
+      this.scope.getRepos(50);
+      expect(this.scope.page).toEqual(10);
+
+      this.scope.getRepos(0);
+      expect(this.scope.page).toEqual(1);
+
+      this.scope.getRepos(-1);
+      expect(this.scope.page).toEqual(1);
+    });
+  });
+
   it('$scope.refreshReposFromGithub calls server.refreshRepos', function(){
     spy_and_return(this.server, 'refreshReposFromGithub', true);
     this.scope.refreshReposFromGithub();

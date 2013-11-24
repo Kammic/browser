@@ -21,6 +21,14 @@
             %span(class="label label-info") Follow
           %a(ng-click="unfollow(repo.book.id)" ng-show="repo.following")
             %span(class="label label-warning") Unfollow
+  %ul(class="pagination")
+    %li
+      %a(ng-click="getRepos(page-1)" ng-hide="page <= 1") &laquo;
+    %li(ng-repeat="p in pageRange()")
+      %a(ng-click="getRepos($index+1)")
+        {{$index+1}}
+    %li
+      %a(ng-click="getRepos(page+1)" ng-hide="page >= total_pages") &raquo;
 
 %script(type="text/ng-template" id="/books/show.html")
   {{book.title}}

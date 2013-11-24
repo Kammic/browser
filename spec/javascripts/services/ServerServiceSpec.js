@@ -132,6 +132,20 @@ describe('service: Server', function() {
   });
 
   describe('getRepos', function(){
+    it('Sends the passed in page as a param', function(){
+      this.$httpBackend
+          .when('GET', '/repos?page=2')
+          .respond([{},{},{}]);
+
+      var done = false;
+      this.server.getRepos(2).then(function(response){
+        done = true;
+      });
+
+      this.$httpBackend.flush();
+      waitsFor(250, function(){ return done});
+    });
+
     it('returns the current users repos', function(){
       this.$httpBackend
           .when('GET', '/repos')

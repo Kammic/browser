@@ -1,4 +1,20 @@
 ReposController = ["$scope", "$rootScope", "server", function($scope, $rootScope, server) {
+  $scope.page = 1;
+
+  $scope.getRepos  = function(page){
+    clearInterval($scope.interval);
+    if(page < 1)
+      page = 1;
+    else if(page > $scope.total_pages)
+      page = $scope.total_pages;
+
+    $scope.page = page;
+    $scope.updateRepos();
+  };
+
+  $scope.pageRange = function(){
+    return new Range(1, $scope.total_pages);
+  };
 
   $scope.refreshReposFromGithub = function(){
     server.refreshReposFromGithub();
@@ -17,9 +33,10 @@ ReposController = ["$scope", "$rootScope", "server", function($scope, $rootScope
   };
 
   $scope.updateRepos = function() {
-    server.getRepos().then(function(response){
-      $scope.loading = response.loading;
-      $scope.repos   = response.repos;
+    server.getRepos($scope.page).then(function(response){
+      $scope.total_pages = response.total_pages;
+      $scope.loading     = response.loading;
+      $scope.repos       = response.repos;
     });
   };
 

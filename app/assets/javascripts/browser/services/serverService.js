@@ -10,7 +10,12 @@ Browser.service('server', ['$q', '$http', function($q, $http){
   server.getUser   = function(){ return queryData('/user'); };
   server.getBooks  = function(){ return queryData('/books'); };
   server.getBuilds = function(){ return queryData('/builds'); };
-  server.getRepos  = function(){ return queryData('/repos'); };
+  server.getRepos  = function(page){
+    var url = '/repos';
+    if(typeof page !== 'undefined')
+      url += '?page=' + page;
+    return queryData(url); 
+  };
 
   server.getBook = function(bookId){
     return $http.get('/books/' + bookId).then(function(response){
