@@ -13,7 +13,9 @@ ReposController = ["$scope", "$rootScope", "server", function($scope, $rootScope
   };
 
   $scope.pageRange = function(){
-    return new Range(1, $scope.total_pages);
+    if(typeof $scope.total_pages !== 'undefined' && $scope.total_pages > 1)
+      return new Array($scope.total_pages);
+    return  [];
   };
 
   $scope.refreshReposFromGithub = function(){

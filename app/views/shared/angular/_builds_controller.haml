@@ -30,6 +30,15 @@
         %td {{build.branch}}
         %td {{build.author}}
         %td {{build.started_at | fromNow}}
+  %ul(class="pagination" ng-show="total_pages > 1")
+    %li(ng-class="{disabled:page <= 1}")
+      %a(ng-click="getBuilds(page-1)") &laquo;
+    %li(ng-repeat="p in pageRange() track by $index" ng-class="{active:page == $index+1}")
+      %a(ng-click="getBuilds($index+1)")
+        {{$index+1}}
+    %li(ng-class="{disabled:page >= total_pages}")
+      %a(ng-click="getBuilds(page+1)") &raquo;
+
 
 %script(type="text/ng-template" id="/builds/show.html")
   .row

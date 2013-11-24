@@ -40,6 +40,14 @@ describe('controller: ReposController', function() {
       this.scope.getRepos(-1);
       expect(this.scope.page).toEqual(1);
     });
+
+    it('$scope.pageRange returns empty array when total_pages is 1', function(){
+      this.scope.total_pages = 1;
+      expect(this.scope.pageRange()).toEqual([]);
+
+      this.scope.total_pages = 5;
+      expect(this.scope.pageRange()).toEqual(new Array(5));
+    });
   });
 
   it('$scope.refreshReposFromGithub calls server.refreshRepos', function(){

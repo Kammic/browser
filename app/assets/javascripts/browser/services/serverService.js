@@ -9,7 +9,12 @@ Browser.service('server', ['$q', '$http', function($q, $http){
 
   server.getUser   = function(){ return queryData('/user'); };
   server.getBooks  = function(){ return queryData('/books'); };
-  server.getBuilds = function(){ return queryData('/builds'); };
+  server.getBuilds = function(page){ 
+    var url = '/builds';
+    if(typeof page !== 'undefined')
+      url += '?page=' + page;
+    return queryData(url); 
+  };
   server.getRepos  = function(page){
     var url = '/repos';
     if(typeof page !== 'undefined')
