@@ -2,6 +2,7 @@
   %table
     %thead
       %tr(role="row")
+        %th 
         %th #
         %th Status
         %th Revision
@@ -10,21 +11,19 @@
         %th Started
     %tbody
       %tr(ng-repeat="build in builds" class="builds")
-        %td
-          %a(ng-href="#/build/{{build.id}}") {{build.id}}
         %td(ng-switch="build.status")
           %div.success(ng-switch-when="completed")
             = fa_icon('check-square')
-            {{build.status}}
           %div(ng-switch-when="created")
             = fa_icon('cog spin')
-            {{build.status}}
           %div(ng-switch-when="building")
             = fa_icon('cog spin')
-            {{build.status}}
           %div(ng-switch-when="failed")
             = fa_icon('minus-square')
-            {{build.status}}
+        %td
+          %a(ng-href="#/build/{{build.id}}") {{build.id}}
+        %td
+          {{build.status}}
         %td(data-tooltip=true title="test")
           %a(ng-href="{{build.github_commit_url}}" target="_blank")
             {{build.revision}}
