@@ -39,10 +39,16 @@ body.browser {
     font-weight:bold;
   }
 
-  .sub-nav dd.active {
-    a, a:hover {
-      background:none;
-      color: #000;
+  .sub-nav {
+    img {
+      height:1em;
+      border-radius:90px;
+    }
+    dd.active {
+      a, a:hover {
+        background:none;
+        color: #000;
+      }
     }
   }
 }
