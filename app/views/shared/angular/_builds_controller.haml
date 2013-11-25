@@ -13,13 +13,13 @@
       %tr(ng-repeat="build in builds" class="builds")
         %td(ng-switch="build.status")
           %div.success(ng-switch-when="completed")
-            = fa_icon('check-square success')
+            = fa_icon('check-circle success')
           %div(ng-switch-when="created")
             = fa_icon('cog spin success')
           %div(ng-switch-when="building")
             = fa_icon('cog spin success')
           %div(ng-switch-when="failed")
-            = fa_icon('minus-square danger')
+            = fa_icon('times-circle danger')
         %td
           %a(ng-href="#/build/{{build.id}}") {{build.id}}
         %td
