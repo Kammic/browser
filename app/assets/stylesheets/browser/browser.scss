@@ -16,10 +16,10 @@ body.browser {
   .actions a{
     padding-left: 1em;
   }
-  a.danger {
+  a.danger, .fa-danger {
     color:#f08a24;
   }
-  a.success {
+  a.success, .fa-success {
     color:#43ac6a
   }
 
