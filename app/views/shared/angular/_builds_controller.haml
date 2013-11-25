@@ -34,12 +34,12 @@
         %td {{build.started_at | fromNow}}
   %ul(class="pagination" ng-show="total_pages > 1")
     %li(ng-class="{unavailable:page <= 1}" class="arrow")
-      %a(ng-click="getRepos(page-1)") &laquo;
+      %a(ng-click="getBuilds(page-1)") &laquo;
     %li(ng-repeat="p in pageRange() track by $index" ng-class="{current:page == $index+1}")
-      %a(ng-click="getRepos($index+1)")
+      %a(ng-click="getBuilds($index+1)")
         {{$index+1}}
     %li(ng-class="{unavailable:page >= total_pages}" class="arrow")
-      %a(ng-click="getRepos(page+1)") &raquo;
+      %a(ng-click="getBuilds(page+1)") &raquo;
 
 
 %script(type="text/ng-template" id="/builds/show.html")
