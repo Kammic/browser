@@ -1,10 +1,13 @@
 %script(type="text/ng-template" id="/repos/index.html")
-  %button(type="button" class="btn btn-primary" ng-click="refreshReposFromGithub()" ng-hide="loading")
-    Refresh from Github
-  %button(type="button" class="btn btn-info" ng-click="refreshReposFromGithub()" ng-show="loading")
-    Refreshing
+  .left.small-6.columns
+    %a(ng-click="refreshReposFromGithub()" ng-hide="loading")
+      Update
+    %a.danger(ng-click="refreshReposFromGithub()" ng-show="loading")
+      Updating
     %i(class="icon-spinner icon-spin")
-  %table(class="table table-striped table-bordered bootstrap-datatable datatable dataTable")
+  %br
+  %br
+  %table
     %thead
       %tr(role="row")
         %th Name
@@ -16,18 +19,20 @@
           %a(ng-href="#/repo/{{repo.id}}") {{repo.name}}
         %td {{repo.short_description}}
         %td
-          %button(type="button" class="btn btn-xs btn-info" ng-click="follow(repo.id)" ng-hide="repo.following")
-            Follow
-          %button(type="button" class="btn btn-xs btn-danger" ng-click="unfollow(repo.book.id)" ng-show="repo.following")
-            Unfollow
-  %ul(class="pagination" ng-show="total_pages > 1")
-    %li(ng-class="{disabled:page <= 1}")
-      %a(ng-click="getRepos(page-1)") &laquo;
-    %li(ng-repeat="p in pageRange() track by $index" ng-class="{active:page == $index+1}")
-      %a(ng-click="getRepos($index+1)")
-        {{$index+1}}
-    %li(ng-class="{disabled:page >= total_pages}")
-      %a(ng-click="getRepos(page+1)") &raquo;
+          %a(class="normal" ng-click="follow(repo.id)" ng-hide="repo.following")
+            follow
+          %a(class="danger" ng-click="unfollow(repo.book.id)" ng-show="repo.following")
+            unfollow
+  .row
+    .left.small-6.columns
+      %ul(class="pagination" ng-show="total_pages > 1")
+        %li(ng-class="{unavailable:page <= 1}" class="arrow")
+          %a(ng-click="getRepos(page-1)") &laquo;
+        %li(ng-repeat="p in pageRange() track by $index" ng-class="{current:page == $index+1}")
+          %a(ng-click="getRepos($index+1)")
+            {{$index+1}}
+        %li(ng-class="{unavailable:page >= total_pages}" class="arrow")
+          %a(ng-click="getRepos(page+1)") &raquo;
 
 %script(type="text/ng-template" id="/books/show.html")
   {{book.title}}

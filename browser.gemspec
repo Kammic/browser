@@ -23,9 +23,9 @@ Gem::Specification.new do |s|
   s.add_dependency("sass-rails", "~> 4.0.0")
   s.add_dependency("uglifier", ">= 1.3.0")
   s.add_dependency("jquery-rails")
+  s.add_dependency("foundation-rails")
   s.add_dependency("font-awesome-rails", "~> 4.0")
   s.add_dependency("haml", "~> 4.0")
-  s.add_dependency("less-rails", "~> 2.4")
 
   s.add_development_dependency("pry")
   s.add_development_dependency("jasmine")

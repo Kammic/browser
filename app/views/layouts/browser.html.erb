@@ -6,13 +6,28 @@
   <%= javascript_include_tag "browser" %>
   <%= csrf_meta_tags %>
 </head>
-<body data-no-turbolink="true">
-  <%= render 'shared/navigation_top' %>	
-		<div class="container">
-			<div id="content" class="col-lg-10 col-sm-11">
+<body data-no-turbolink="true" class="browser">
+  <div class="row">
+    <div class="small-11 small-centered columns">
+      <div class="row header">
+        <a class="brand" href="#">Arturo.io</a>
+        <dl class="sub-nav right">
+          <dd><a href="#/books">#Books</a></dd>
+          <dd><a href="#/builds">#Builds</a></dd>
+          <dd><a href="#/repos">#Repos</a></dd>
+        </dl>
+      </div>
+
+      <div class="row">
         <%= yield %>
-			</div>
-	  </div>
+      </div>
+    </div>
+  </div>
+  <%= javascript_include_tag "foundation" %>
+  <script>
+    $(document).foundation();
+  </script>
+
 
 </body>
 </html>

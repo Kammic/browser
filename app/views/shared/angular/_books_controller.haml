@@ -1,5 +1,5 @@
 %script(type="text/ng-template" id="/books/index.html")
-  %table(class="table table-striped table-bordered bootstrap-datatable datatable dataTable")
+  %table
     %thead
       %tr(role="row")
         %th Book
@@ -10,15 +10,13 @@
         %td 
           %a(ng-href="#/books/{{book.id}}") {{book.name}}
         %td {{book.description}}
-        %td
-          %a(ng-href="#/books/{{book.id}}")
-            %span(class="label label-success") View
-          %a(ng-href="{{book.editor_url}}")
-            %span(class="label label-success") Edit
-          %a(ng-click="build(book.id)")
-            %span(class="label label-success") Build
-          %a(ng-click="unfollow(book.id)")
-            %span(class="label label-danger") Unfollow
+        %td.actions
+          %a.success(ng-href="{{book.editor_url}}")
+            Edit
+          %a.normal(ng-click="build(book.id)")
+            Build
+          %a.danger(ng-click="unfollow(book.id)")
+            Unfollow
 
 %script(type="text/ng-template" id="/books/show.html")
   {{book.title}}
