@@ -15,7 +15,7 @@ BooksController = ["$scope", "$rootScope", "$location", "server", function($scop
 
   $scope.build = function(bookId){
     if($scope.bookHasActiveBuilds(bookId)) {
-      $rootScope.$broadcast('alert', 'danger', 'Build already in progres');
+      $rootScope.$broadcast('alert', 'warning', 'Build already in progres');
       return;
     }
     server.build(bookId).then(function(result) {

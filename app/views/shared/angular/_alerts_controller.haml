@@ -1,4 +1,5 @@
 %div(ng-controller="AlertsController")
-  %alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)")
+  .alert-box(ng-repeat="alert in alerts" ng-class="alert.type" close="")
     {{alert.msg}}
+    %a.close(ng-click="closeAlert($index)") &times;
 
