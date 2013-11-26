@@ -19,7 +19,7 @@
           %div(ng-switch-when="building")
             = fa_icon('cog spin success')
           %div(ng-switch-when="failed")
-            = fa_icon('times-circle danger')
+            = fa_icon('times-circle error')
         %td
           %a(ng-href="#/build/{{build.id}}") {{build.id}}
         %td
