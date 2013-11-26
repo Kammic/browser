@@ -16,14 +16,14 @@ body.browser {
   .actions a{
     padding-left: 1em;
   }
-  a.danger, .fa-danger {
+  a.danger, .fa-danger, .c-danger {
     color:#f08a24;
   }
-  a.success, .fa-success {
+  a.success, .fa-success, .c-success {
     color:#43ac6a
   }
 
-  .fa-error {
+  .error, .c-error {
     color: #990000;
   }
 

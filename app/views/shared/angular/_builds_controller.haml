@@ -12,14 +12,14 @@
     %tbody
       %tr(ng-repeat="build in builds" class="builds")
         %td(ng-switch="build.status")
-          %div.success(ng-switch-when="completed")
-            = fa_icon('check-circle success')
-          %div(ng-switch-when="created")
-            = fa_icon('cog spin success')
-          %div(ng-switch-when="building")
-            = fa_icon('cog spin success')
-          %div(ng-switch-when="failed")
-            = fa_icon('times-circle error')
+          %div.c-success(ng-switch-when="completed")
+            = fa_icon('check-circle')
+          %div.c-success(ng-switch-when="created")
+            = fa_icon('cog spin')
+          %div.c-success(ng-switch-when="building")
+            = fa_icon('cog spin')
+          %div.c-error(ng-switch-when="failed")
+            = fa_icon('times-circle')
         %td
           %a(ng-href="#/build/{{build.id}}") {{build.id}}
         %td
@@ -44,42 +44,7 @@
 
 %script(type="text/ng-template" id="/builds/show.html")
   .row
-    .col-lg-3.col-sm-6.col-xs-6.col-xxs-12
-      .smallstat.box
-        %i.icon-book.blue
-        %span.title
-          Pages
-        %span.value
-          200
-
-    .col-lg-3.col-sm-6.col-xs-6.col-xxs-12
-      .smallstat.box
-        %i.icon-font.blue
-        %span.title
-          Words
-        %span.value
-          500
-
-    .col-lg-3.col-sm-6.col-xs-6.col-xxs-12
-      .smallstat.box
-        %i.icon-plus-sign.green
-        %span.title
-          Additions
-        %span.value
-          %a(ng-href="{{build.github_commit_url}}" target="_blank")
-            {{build.additions}}
-
-    .col-lg-3.col-sm-6.col-xs-6.col-xxs-12
-      .smallstat.box
-        %i.icon-minus-sign.red
-        %span.title
-          Deletions
-        %span.value
-          %a(ng-href="{{build.github_commit_url}}" target="_blank")
-            {{build.deletions}}
-
-  .row
-    .col-lg-6.col-sm-6.col-xs-12.col-xxs-12
+    .medium-6.columns
       .smallstat.box
         %h1 Build
         %table
@@ -88,6 +53,18 @@
               Author:
             %td
               {{build.author}}
+          %tr
+            %td.bold-text.c-success
+              Additions:
+            %td
+              %a(ng-href="{{build.github_commit_url}}" target="_blank")
+                {{build.additions}}
+          %tr
+            %td.bold-text.c-error
+              Deletions:
+            %td
+              %a(ng-href="{{build.github_commit_url}}" target="_blank")
+                {{build.deletions}}
           %tr
             %td.bold-text
               Branch:
@@ -107,10 +84,11 @@
             %td.bold-text
               SHA1:
             %td
-              {{build.revision}}
+              %a(ng-href="{{build.github_commit_url}}" target="_blank")
+                {{build.revision}}
 
 
-    .col-lg-6.col-sm-6.col-xs-12.col-xxs-12
+    .medium-6.columns
       .smallstat.box
         %h1 Assets
         %ul
