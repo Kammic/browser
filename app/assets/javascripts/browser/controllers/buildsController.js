@@ -35,4 +35,5 @@ BuildsController = ["$scope", "server", function($scope, server) {
   $scope.$on('$destroy', function(){
     clearInterval($scope.interval);
   });
+
 }];

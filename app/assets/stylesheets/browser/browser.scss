@@ -1,12 +1,13 @@
-@import url(//fonts.googleapis.com/css?family=Lato:400,700);
-@import url(//fonts.googleapis.com/css?family=Ubuntu);
 body.browser {
-  font-family: 'Lato', sans-serif !important;
+  font-family: "open-sans",sans-serif;
   padding-top: 2em;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 
   .brand {
     font-size: 2em;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: "adage-script",sans-serif;
   }
 
   table {
@@ -34,9 +35,6 @@ body.browser {
   .header {
     border-bottom: 1px dashed #ccc;
     margin-bottom: 1em;
-    a {
-      font-family: 'Ubuntu', sans-serif;
-    }
   }
 
   a,a:hover {
@@ -50,7 +48,8 @@ body.browser {
     }
     dd {
       a.active, a.active:hover {
-        color: #990000;
+        color:#43ac6a;
+        text-decoration: underline;
       }
 
       a, a:hover {

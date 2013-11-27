@@ -19,7 +19,7 @@ Browser.config(['$routeProvider',
                    templateUrl: '/builds/index.html',
                    controller: 'BuildsController'
                  })
-                 .when('/build/:buildId', {
+                 .when('/builds/:buildId', {
                    templateUrl: '/builds/show.html',
                    controller: 'BuildController'
                  })

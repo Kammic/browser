@@ -24,7 +24,7 @@
           %a(ng-href="#/build/{{build.id}}") {{build.id}}
         %td
           {{build.status}}
-        %td(data-tooltip=true title="test")
+        %td
           %a(ng-href="{{build.github_commit_url}}" target="_blank")
             {{build.revision}}
         %td
