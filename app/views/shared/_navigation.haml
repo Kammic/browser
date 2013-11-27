@@ -1,15 +1,16 @@
 .row.header
-  .medium-6.columns
-    %a.brand(href=root_path) Arturo.io
-  .medium-6.columns
-    %dl.sub-nav.right
-      %dd
-        %a(href="#/books") #Books
-      %dd
-        %a(href="#/builds") #Builds
-      %dd
-        %a(href="#/repos") #Repos
-      %dd
-        %a(href="#/user")
-          = user.login
-          = image_tag user.image_url
+  %div(ng-controller="HeaderController")
+    .medium-6.columns
+      %a.brand(href=root_path) Arturo.io
+    .medium-6.columns
+      %dl.sub-nav.right
+        %dd
+          %a(href="#/books" ng-class="{active: currentSection() == 'books'}") #Books
+        %dd
+          %a(href="#/builds" ng-class="{active: currentSection() == 'builds'}") #Builds
+        %dd
+          %a(href="#/repos" ng-class="{active: currentSection() == 'repos'}") #Repos
+        %dd
+          %a(href="#/user")
+            {{login}}
+            %img(ng-src="{{image_url}}")

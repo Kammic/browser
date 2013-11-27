@@ -48,7 +48,11 @@ body.browser {
       height:1em;
       border-radius:90px;
     }
-    dd.active {
+    dd {
+      a.active, a.active:hover {
+        color: #990000;
+      }
+
       a, a:hover {
         background:none;
         color: #000;

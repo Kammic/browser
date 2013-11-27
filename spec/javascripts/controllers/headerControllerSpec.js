@@ -5,10 +5,11 @@ describe('controller: HeaderController', function() {
     $("body").append("<div id='preview'></div>");
   });
 
-  beforeEach(inject(function($rootScope, $controller, server) {
-    this.scope  = $rootScope.$new();
-    this.server = server;
-    this.ctrl   = $controller('HeaderController', {
+  beforeEach(inject(function($rootScope, $controller, $location, server) {
+    this.scope    = $rootScope.$new();
+    this.server   = server;
+    this.location = $location;
+    this.ctrl     = $controller('HeaderController', {
       $scope: this.scope,
     });
   }));
@@ -26,5 +27,19 @@ describe('controller: HeaderController', function() {
     expect(this.scope.image_url).toEqual('image');
   });
 
+  it('$scope.currentSection() returns book', function(){
+    spyOn(this.location, 'path').andCallFake(function(){ return '/books/1/2';});
+    expect(this.scope.currentSection()).toEqual('books');
+  });
+
+  it('$scope.currentSection() returns builds', function(){
+    spyOn(this.location, 'path').andCallFake(function(){ return '/builds/1/2';});
+    expect(this.scope.currentSection()).toEqual('builds');
+  });
+
+  it('$scope.currentSection() returns repos', function(){
+    spyOn(this.location, 'path').andCallFake(function(){ return '/repos/1/2';});
+    expect(this.scope.currentSection()).toEqual('repos');
+  });
 });
 
